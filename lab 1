@@ -1,0 +1,45 @@
+import csv
+
+a = []
+
+with open('enjoysport.csv','r') as csvFile:
+
+    reader = csv.reader(csvFile)
+
+    for row in reader:
+
+        a.append (row)
+
+        print(row)
+
+print("\nthe total no of learning instances are:",len(a))
+
+num_attributes = len(a[0])-1
+
+print("\n the most general hypothesis : ['?','?','?','?','?','?']\n")   
+
+print("\n the initial value of hypothesis: ")
+
+hypothesis = ['0'] * num_attributes
+
+print(hypothesis)
+
+for i in range(0,len(a)):
+
+    if a[i][num_attributes] == 'yes':
+
+        for j in range(0,num_attributes):
+
+            if hypothesis[j] == '0' or hypothesis[j]==a[i][j]:
+
+                hypothesis[j]= a[i][j]
+
+            else:
+
+                hypothesis[j]= '?'
+
+    print("for training example No:{} the hypothesis is".format(i+1),hypothesis)
+
+print("\n the maximally specific hypothesis for a given training examples \n")
+
+print(hypothesis)
